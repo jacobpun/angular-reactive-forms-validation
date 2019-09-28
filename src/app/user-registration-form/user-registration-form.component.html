@@ -1,0 +1,120 @@
+<div class="form-container">
+  <h1 class="heading">User Registration</h1>
+  <form [formGroup]="registrationForm">
+    <div class="form-group">
+      <label for="fname">First Name: </label>
+      <input
+        class="form-control"
+        id="fname"
+        type="text"
+        formControlName="firstName"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="!ctrl('firstName').valid && ctrl('firstName').touched"
+    >
+      First Name is required
+    </div>
+    <div class="form-group">
+      <label for="lname">Last Name: </label>
+      <input
+        class="form-control"
+        id="lname"
+        type="text"
+        formControlName="lastName"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="!ctrl('lastName').valid && ctrl('lastName').touched"
+    >
+      Last Name is required
+    </div>
+    <div class="form-group">
+      <label for="dob">Date of Birth: </label>
+      <input
+        class="form-control"
+        id="dob"
+        type="date"
+        formControlName="dateOfBirth"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input
+        class="form-control"
+        id="email"
+        type="text"
+        formControlName="email"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="!ctrl('email').valid && ctrl('email').touched"
+    >
+      {{ emailErrors() }}
+    </div>
+    <div class="form-group">
+      <label for="cemail">Confirn Email: </label>
+      <input
+        class="form-control"
+        id="cemail"
+        type="text"
+        formControlName="confirmEmail"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="!ctrl('confirmEmail').valid && ctrl('confirmEmail').touched"
+    >
+      {{ emailErrors(true) }}
+    </div>
+
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="acceptLicense"
+        formControlName="acceptLicense"
+      />
+      <label class="form-check-label" for="acceptLicense">
+        Agree to terms and conditions
+      </label>
+    </div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="!ctrl('acceptLicense').valid && ctrl('acceptLicense').touched"
+    >
+      Please accept terms and conditions
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <input
+        type="submit"
+        value="Submit"
+        class="btn btn-space btn-outline-primary col-md-3"
+      />
+      <input
+        type="button"
+        value="Cancel"
+        class="btn btn-space btn-outline-secondary col-md-3"
+      />
+      <div class="col-md-3"></div>
+    </div>
+  </form>
+</div>
+
+<h5>Form:</h5>
+<pre
+  >{{ registrationForm.value | json }}
+</pre>
+
+<h5>Valid?: {{ registrationForm.valid }}</h5>

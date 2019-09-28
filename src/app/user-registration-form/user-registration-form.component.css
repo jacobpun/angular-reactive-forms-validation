@@ -1,0 +1,21 @@
+form {
+  width: 50%;
+  margin: 30px auto;
+  border: 1px cornflowerblue solid;
+  padding: 25px;
+}
+
+.btn-space {
+  margin: 20px;
+}
+
+.heading {
+  width: 50%;
+  margin: 10px auto 0px auto;
+  padding-top: 10px;
+  color: black;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+}
