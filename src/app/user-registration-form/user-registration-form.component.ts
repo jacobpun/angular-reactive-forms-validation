@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
-  styleUrls: ['./user-registration-form.component.css']
+  styleUrls: ['./user-registration-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserRegistrationFormComponent implements OnInit {
   registrationForm: FormGroup;
@@ -66,6 +67,13 @@ function shouldMatch(ctrl1Name, ctrl2Name): ValidatorFn {
     const ctrl1 = fControl.get(ctrl1Name);
     const ctrl2 = fControl.get(ctrl2Name);
     if (ctrl1.value === ctrl2.value) {
+      if (ctrl2.errors && ctrl2.errors.doNotMatch) {
+        delete ctrl2.errors['doNotMatch'];
+        if(Object.keys(ctrl2.errors).length === 0) {
+          // if no other errors are present, set errors to null
+          ctrl2.setErrors(null);
+        }
+      }
       return null;
     }
     ctrl2.setErrors({ doNotMatch: true });
